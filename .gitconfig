@@ -1,0 +1,22 @@
+[core]
+    editor = vim
+    excludesfile = ~/config/.gitignore_global
+[color]
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    log = auto
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    df = diff
+    dfc = diff --cached
+    la = log --graph --decorate --pretty=oneline --abbrev-commit --all
+[commit]
+    gpgsign = true
+    template = ~/config/.stCommitMsg
+[gpg]
+    program = gpg
