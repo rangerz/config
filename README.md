@@ -1,24 +1,9 @@
 # config
 Related-Shell Config
 
-### Download to Here
+### Install
 ```
 cd ~
 git clone git@github.com:rangerz/config.git
-```
-
-### ~/.bash_profile
-```
-. ~/config/.bash_profile
-```
-
-### ~/.vimrc
-```
-source ~/config/.vimrc
-```
-
-### ~/.gitconfig
-```
-[include]
-    path = ~/config/.gitconfig
+./config/install.sh
 ```
