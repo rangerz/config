@@ -35,11 +35,11 @@ linux_only() {
     alias ll='ls -FGlAhp --color'
     alias aptup='sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
     alias free='free -h'
-    alias psmem = 'ps auxf | sort -nr -k 4'
-    alias psmem10 = 'ps auxf | sort -nr -k 4 | head -10'
-    alias pscpu = 'ps auxf | sort -nr -k 3'
-    alias pscpu10 = 'ps auxf | sort -nr -k 3 | head -10'
-    alias cpuinfo = 'lscpu'
+    alias psmem='ps auxf | sort -nr -k 4'
+    alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+    alias pscpu='ps auxf | sort -nr -k 3'
+    alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+    alias cpuinfo='lscpu'
 }
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
