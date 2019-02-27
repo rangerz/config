@@ -33,6 +33,13 @@ mac_only() {
 linux_only() {
     alias ls='ls -GFh --color'
     alias ll='ls -FGlAhp --color'
+    alias aptup='sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
+    alias free='free -h'
+    alias psmem = 'ps auxf | sort -nr -k 4'
+    alias psmem10 = 'ps auxf | sort -nr -k 4 | head -10'
+    alias pscpu = 'ps auxf | sort -nr -k 3'
+    alias pscpu10 = 'ps auxf | sort -nr -k 3 | head -10'
+    alias cpuinfo = 'lscpu'
 }
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
@@ -59,6 +66,7 @@ alias ..='cd ../'
 alias ...='cd ../../'
 alias ~="cd ~"
 alias c='clear'
+alias q='exit'
 alias which='type -all'
 alias path='echo -e ${PATH//:/\\n}'
 alias show_options='shopt'
@@ -68,16 +76,21 @@ mcd () { mkdir -p "$1" && cd "$1"; }
 alias sudo='sudo '
 alias vi='vim'
 alias wget='wget -c'
+alias untar='tar -zxvf '
 alias df='df -H'
 alias du='du -ch'
 alias resh='source ~/.bash_profile'
 alias qf="find . -name "
-alias myip='curl ip.gs'
+alias myip='curl ip.gs' # curl ipinfo.io/ip
 alias netCons='lsof -i'
 alias openPorts='sudo lsof -i | grep LISTEN'
 alias lsock='sudo lsof -i -P'
 alias lsockU='sudo lsof -nP | grep UDP'
 alias lsockT='sudo lsof -nP | grep TCP'
+alias sha='shasum -a 256 '
+alias ping='ping -c 5'
+alias h='history'
+alias hg='history | grep '
 
 mans () {
   man $1 | grep -iC2 --color=always $1 | less
