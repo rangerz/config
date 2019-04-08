@@ -75,12 +75,13 @@ alias cic='set completion-ignore-case On'
 mcd () { mkdir -p "$1" && cd "$1"; }
 alias sudo='sudo '
 alias vi='vim'
+alias vf='vimdiff'
 alias wget='wget -c'
 alias untar='tar -zxvf '
 alias df='df -H'
 alias du='du -ch'
 alias resh='source ~/.bash_profile'
-alias qf="find . -name "
+alias f="find . -name "
 alias myip='curl ip.gs' # curl ipinfo.io/ip
 alias netCons='lsof -i'
 alias openPorts='sudo lsof -i | grep LISTEN'
