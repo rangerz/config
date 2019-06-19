@@ -8,17 +8,14 @@ mac_only() {
     alias ls='ls -GFh'
     alias ll='ls -FGlAhp'
 
-    #Oracle Java
-    # https://www.java.com/en/download/
-    export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_201.jdk/Contents/Home"
-    export CLASS_PATH="$JAVA_HOME/lib"
-    export PATH=".:$PATH:$JAVA_HOME/bin"
-
     #Anaconda3
     # brew cask install anaconda
-    alias acEnv='export PATH=$HOME/anaconda/bin:$PATH'
+    alias acEnv='export PATH=/usr/local/anaconda3/bin:$PATH'
+    # conda update conda
+    # conda update anaconda
 
     #Sublime
+    # ln /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
     alias edit='subl'
 
     #DNS
@@ -27,7 +24,8 @@ mac_only() {
 
     alias brewery='brew update && brew upgrade && brew cleanup'
     trash () { command mv "$@" ~/.Trash ; }
-    alias f='open -a Finder ./'
+    alias fr='open -a Finder '
+    alias diff='colordiff'
 }
 
 linux_only() {
@@ -91,13 +89,14 @@ alias lsockT='sudo lsof -nP | grep TCP'
 alias sha='shasum -a 256 '
 alias ping='ping -c 5'
 alias h='history'
+alias j='jobs -l'
 alias hg='history | grep '
 
 mans () {
   man $1 | grep -iC2 --color=always $1 | less
 }
 zipf () { zip -r "$1".zip "$1" ; }
-extract () {
+ex () {
   if [ -f $1 ] ; then
     case $1 in
       *.tar.bz2)   tar xjf $1     ;;
@@ -111,7 +110,7 @@ extract () {
       *.zip)       unzip $1       ;;
       *.Z)         uncompress $1  ;;
       *.7z)        7z x $1        ;;
-      *)     echo "'$1' cannot be extracted via extract()" ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
     echo "'$1' is not a valid file"
