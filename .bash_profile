@@ -26,6 +26,7 @@ mac_only() {
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
     alias diff='colordiff'
+    alias dm='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge'
 }
 
 linux_only() {

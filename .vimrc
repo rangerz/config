@@ -27,3 +27,6 @@ set showmatch
 filetype plugin indent on
 
 colo torte
+
+"Automatically remove trailing spaces when saving a file.
+autocmd BufWritePre * :%s/\s\+$//e
