@@ -25,4 +25,5 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
 fi
 
 # SSH Config
+mkdir -p ~/.ssh/
 cp -f ~/config/.ssh_config ~/.ssh/config
