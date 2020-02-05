@@ -76,8 +76,7 @@ alias untar='tar -zxvf '
 alias df='df -H'
 alias du='du -ch'
 alias resh='source ~/.profile'
-function f() { find . -iname "*$1*" ${@:2} }
-function r() { grep "$1" ${@:2} -R . }
+alias f='find . -iname'
 alias myip='curl ip.gs' # curl ipinfo.io/ip
 alias netCons='lsof -i'
 alias openPorts='sudo lsof -i | grep LISTEN'
