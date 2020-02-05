@@ -6,13 +6,8 @@ export BLOCKSIZE=1k
 
 mac_only() {
     alias ls='ls -GFh'
-    alias ll='ls -FGlAhp'
-
-    #Anaconda3
-    # brew cask install anaconda
-    alias acEnv='export PATH=/usr/local/anaconda3/bin:$PATH'
-    # conda update conda
-    # conda update anaconda
+    alias ll='ls -FGlhp'
+    alias la='ls -lAh'
 
     #Sublime
     # ln /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
@@ -31,7 +26,8 @@ mac_only() {
 
 linux_only() {
     alias ls='ls -GFh --color'
-    alias ll='ls -FGlAhp --color'
+    alias ll='ls -FGlhp --color'
+    alias la='ls -FGlAhp --color'
     alias aptup='sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
     alias free='free -h'
     alias psmem='ps auxf | sort -nr -k 4'
@@ -79,8 +75,9 @@ alias wget='wget -c'
 alias untar='tar -zxvf '
 alias df='df -H'
 alias du='du -ch'
-alias resh='source ~/.bash_profile'
-alias f="find . -name "
+alias resh='source ~/.profile'
+function f() { find . -iname "*$1*" ${@:2} }
+function r() { grep "$1" ${@:2} -R . }
 alias myip='curl ip.gs' # curl ipinfo.io/ip
 alias netCons='lsof -i'
 alias openPorts='sudo lsof -i | grep LISTEN'
@@ -92,6 +89,7 @@ alias ping='ping -c 5'
 alias h='history'
 alias j='jobs -l'
 alias hg='history | grep '
+alias g=git
 
 mans () {
   man $1 | grep -iC2 --color=always $1 | less

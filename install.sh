@@ -1,9 +1,28 @@
-#!/bin/bash
+#!/bin/sh
+# MUST Install in ~/config
 
-touch ~/.bash_profile
-echo ". ~/config/.bash_profile" >> ~/.bash_profile
+# Shell Config
+echo ". ~/config/.sh_profile" >> ~/.profile
+case $SHELL in
+*/zsh)
+    echo ". ~/.profile" >> ~/.zprofile
+    ;;
+*/bash)
+    echo ". ~/.profile" >> ~/.bash_profile
+    ;;
+*)
+    echo "Unknown SHELL env"
+esac
+echo "Apply Shell Config: source ~/.profile"
 
-touch ~/.vimrc
+# Vim Config
 echo "source ~/config/.vimrc" >> ~/.vimrc
 
-git config --global include.path "~/config/.gitconfig"
+# Git Config
+git config --add --global include.path "~/config/.gitconfig"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    git config --add --global include.path "~/config/.gitconfig_diffmerge"
+fi
+
+# SSH Config
+cp -f ~/config/.ssh_config ~/.ssh/config
