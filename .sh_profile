@@ -4,7 +4,7 @@ export EDITOR=/usr/bin/vim
 #Set default blocksize for ls, df, du
 export BLOCKSIZE=1k
 
-mac_only() {
+mac_only () {
     alias ls='ls -GFh'
     alias ll='ls -FGlhp'
     alias la='ls -lAh'
@@ -21,10 +21,9 @@ mac_only() {
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
     alias diff='colordiff'
-    alias dm='/Applications/DiffMerge.app/Contents/MacOS/DiffMerge'
 }
 
-linux_only() {
+linux_only () {
     alias ls='ls -GFh --color'
     alias ll='ls -FGlhp --color'
     alias la='ls -FGlAhp --color'
@@ -52,7 +51,7 @@ alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
 alias less='less -FSRXc'
-cd() { builtin cd "$@"; ls -al; }
+cd () { builtin cd "$@"; ls -al; }
 alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
@@ -75,7 +74,8 @@ alias wget='wget -c'
 alias untar='tar -zxvf '
 alias df='df -H'
 alias du='du -ch'
-alias resh='source ~/.profile'
+alias resh='~/config/reload.sh'
+alias resh="exec $SHELL"
 alias f='find . -iname'
 alias myip='curl ip.gs' # curl ipinfo.io/ip
 alias netCons='lsof -i'

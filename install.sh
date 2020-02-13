@@ -1,19 +1,21 @@
 #!/bin/sh
 # MUST Install in ~/config
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # Shell Config
 echo ". ~/config/.sh_profile" >> ~/.profile
 case $SHELL in
 */zsh)
-    echo ". ~/.profile" >> ~/.zprofile
+    echo "test -e ~/.profile && source ~/.profile" >> ~/.zshrc
     ;;
 */bash)
-    echo ". ~/.profile" >> ~/.bash_profile
+    echo "test -e ~/.profile && source ~/.profile" >> ~/.bashrc
     ;;
 *)
     echo "Unknown SHELL env"
 esac
-echo "Apply Shell Config: source ~/.profile"
+echo "Apply Shell Config: exec \$SHELL"
 
 # Vim Config
 echo "source ~/config/.vimrc" >> ~/.vimrc
