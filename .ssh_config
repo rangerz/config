@@ -1,4 +1,7 @@
+Host ssh.us-3.magento.cloud
+    ControlPath ~/.ssh/mux/%C
+
 Host *
     ControlMaster auto
-    ControlPath ~/.ssh/%h-%p-%r
+    ControlPath ~/.ssh/mux/%r@%h:%p
     ControlPersist yes
