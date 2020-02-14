@@ -17,7 +17,7 @@ mac_only () {
     alias editHosts='sudo vim /private/etc/hosts'
     alias flushDNS='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
 
-    alias brewery='brew update && brew upgrade && brew cleanup'
+    alias brewery='brew update && brew upgrade && brew cask upgrade && brew cleanup'
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
     alias diff='colordiff'
