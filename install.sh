@@ -1,31 +1,35 @@
-#!/bin/sh
-# MUST Install in ~/config
+#!/bin/bash
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# MUST Install in ~/config
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
 
 # Shell Config
-echo ". ~/config/.sh_profile" >> ~/.profile
+SHRC=~/.bashrc
 case $SHELL in
 */zsh)
-    echo "test -e ~/.profile && source ~/.profile" >> ~/.zshrc
+    SHRC=~/.zshrc
     ;;
 */bash)
-    echo "test -e ~/.profile && source ~/.profile" >> ~/.bashrc
+    SHRC=~/.bashrc
     ;;
 *)
     echo "Unknown SHELL env"
 esac
+echo "test -e $DIR/.sh_profile && source $DIR/.sh_profile" >> $SHRC
 echo "Apply Shell Config: exec \$SHELL"
 
 # Vim Config
-echo "source ~/config/.vimrc" >> ~/.vimrc
+echo "source $DIR/.vimrc" >> ~/.vimrc
 
 # Git Config
-git config --add --global include.path "~/config/.gitconfig"
+git config --add --global include.path "$DIR/.gitconfig"
+
+# Git Config's DiffMerge
+# https://sourcegear.com/diffmerge/webhelp/sec__git.html
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    git config --add --global include.path "~/config/.gitconfig_diffmerge"
+    git config --add --global include.path "$DIR/.gitconfig_diffmerge_macosx"
 fi
 
 # SSH Config
-mkdir -p ~/.ssh/
-cp -f ~/config/.ssh_config ~/.ssh/config
+mkdir -p ~/.ssh/mux
+cp -f $DIR/.ssh_config ~/.ssh/config

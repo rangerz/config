@@ -1,10 +1,12 @@
 # config
+
 Ranger's Shell Config
 
 ### Install
+
 ```
 cd ~
-git clone git@github.com:rangerz/config.git
+git clone https://github.com/rangerz/config.git
 ~/config/install.sh
-source ~/.profile
+exec $SHELL
 ```

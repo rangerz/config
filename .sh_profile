@@ -4,19 +4,17 @@ export EDITOR=/usr/bin/vim
 #Set default blocksize for ls, df, du
 export BLOCKSIZE=1k
 
-mac_only () {
+unix_like () {
+    alias sudo='sudo '
+}
+
+macosx_only () {
     alias ls='ls -GFh'
     alias ll='ls -FGlhp'
     alias la='ls -lAh'
-
-    #Sublime
-    # ln /Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl /usr/local/bin/subl
+    alias which='type'
     alias edit='subl'
-
-    #DNS
-    alias editHosts='sudo vim /private/etc/hosts'
     alias flushDNS='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-
     alias brewery='brew update && brew upgrade && brew cask upgrade && brew cleanup'
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
@@ -27,7 +25,10 @@ linux_only () {
     alias ls='ls -GFh --color'
     alias ll='ls -FGlhp --color'
     alias la='ls -FGlAhp --color'
+    alias which='type -a'
     alias aptup='sudo apt update -y && sudo apt upgrade -y && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt clean -y && sudo apt autoclean -y'
+    alias yumuo=''
+    alias dfsup=''
     alias free='free -h'
     alias psmem='ps auxf | sort -nr -k 4'
     alias psmem10='ps auxf | sort -nr -k 4 | head -10'
@@ -36,10 +37,16 @@ linux_only () {
     alias cpuinfo='lscpu'
 }
 
+msys_only () {
+    alias sudo=''
+}
+
 if [[ "$OSTYPE" == "darwin"* ]]; then
-    mac_only
-elif [[ "$OSTYPE" == "linux-gnu" ]]; then
+    macosx_only
+elif [[ "$OSTYPE" == "linux"* ]]; then
     linux_only
+elif [[ "$OSTPYE" == "msys"* ]]; then
+    msys_only
 else
     echo "Unknown"
 fi
@@ -51,7 +58,6 @@ alias cp='cp -iv'
 alias mv='mv -iv'
 alias mkdir='mkdir -pv'
 alias less='less -FSRXc'
-cd () { builtin cd "$@"; ls -al; }
 alias grep='grep --color'
 alias egrep='egrep --color'
 alias fgrep='fgrep --color'
@@ -61,13 +67,11 @@ alias ...='cd ../../'
 alias ~="cd ~"
 alias c='clear'
 alias q='exit'
-alias which='type -all'
 alias path='echo -e ${PATH//:/\\n}'
 alias show_options='shopt'
 alias fix_stty='stty sane'
 alias cic='set completion-ignore-case On'
-mcd () { mkdir -p "$1" && cd "$1"; }
-alias sudo='sudo '
+alias sludo='sudo '
 alias vi='vim'
 alias vf='vimdiff'
 alias wget='wget -c'
@@ -77,6 +81,7 @@ alias du='du -ch'
 alias resh='~/config/reload.sh'
 alias resh="exec $SHELL"
 alias f='find . -iname'
+alias editHosts='sudo vim /etc/hosts'
 alias myip='curl ip.gs' # curl ipinfo.io/ip
 alias netCons='lsof -i'
 alias openPorts='sudo lsof -i | grep LISTEN'
@@ -90,6 +95,11 @@ alias j='jobs -l'
 alias hg='history | grep '
 alias g=git
 
+# -----------------------------
+# Functions
+# -----------------------------
+cd () { builtin cd "$@"; ls -al; }
+mcd () { mkdir -p "$1" && cd "$1"; }
 mans () {
   man $1 | grep -iC2 --color=always $1 | less
 }
