@@ -16,6 +16,7 @@ macosx_only () {
     alias edit='subl'
     alias flushDNS='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
     alias brewery='brew update && brew upgrade && brew cask upgrade && brew cleanup && brew doctor'
+    alias brewdeps='brew deps --tree --installed'
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
     alias diff='colordiff'
@@ -88,7 +89,8 @@ alias openPorts='sudo lsof -i | grep LISTEN'
 alias lsock='sudo lsof -i -P'
 alias lsockU='sudo lsof -nP | grep UDP'
 alias lsockT='sudo lsof -nP | grep TCP'
-alias sha='shasum -a 256 '
+alias sha256='shasum -a 256 '
+alias sha1='shasum '
 alias ping='ping -c 5'
 alias h='history'
 alias j='jobs -l'
@@ -107,18 +109,21 @@ zipf () { zip -r "$1".zip "$1" ; }
 ex () {
   if [ -f $1 ] ; then
     case $1 in
-      *.tar.bz2)   tar xjf $1     ;;
-      *.tar.gz)    tar xzf $1     ;;
-      *.bz2)       bunzip2 $1     ;;
-      *.rar)       unrar e $1     ;;
-      *.gz)        gunzip $1      ;;
-      *.tar)       tar xf $1      ;;
-      *.tbz2)      tar xjf $1     ;;
-      *.tgz)       tar xzf $1     ;;
-      *.zip)       unzip $1       ;;
-      *.Z)         uncompress $1  ;;
-      *.7z)        7z x $1        ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+      *.tar.bz2)  tar xvjf $1       ;;
+      *.tar.gz)   tar xvzf $1       ;;
+      *.tar.xz)   tar xvJf $1       ;;
+      *.tar.lzma) tar --lzma xvf $1 ;;
+      *.bz2)      bunzip2 $1        ;;
+      *.rar)      unrar e $1        ;;
+      *.gz)       gunzip $1         ;;
+      *.tar)      tar xvf $1        ;;
+      *.tbz2)     tar xvjf $1       ;;
+      *.tgz)      tar xvzf $1       ;;
+      *.zip)      unzip $1          ;;
+      *.Z)        uncompress $1     ;;
+      *.7z)       7z x $1           ;;
+      *.dmg)      hdiutul mount $1  ;; # mount OS X disk images
+      *)          echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
     echo "'$1' is not a valid file"
