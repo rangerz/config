@@ -14,7 +14,7 @@
     br = branch
     df = diff
     dfc = diff --cached
-    ll = log --name-status
+    ll = log --stat
     la = log --graph --decorate --pretty=oneline --abbrev-commit --all
 [commit]
     template = ~/config/.stCommitMsg
