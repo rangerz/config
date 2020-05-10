@@ -15,6 +15,7 @@ case $SHELL in
 *)
     echo "Unknown SHELL env"
 esac
+echo "# Ranger's Config" >> $SHRC
 echo "test -e $DIR/.sh_profile && source $DIR/.sh_profile" >> $SHRC
 echo "Apply Shell Config: exec \$SHELL"
 
