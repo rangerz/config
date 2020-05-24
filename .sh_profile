@@ -1,8 +1,11 @@
 export CLICOLOR=1
 export EDITOR=/usr/bin/vim
 
-#Set default blocksize for ls, df, du
+# Set default blocksize for ls, df, du
 export BLOCKSIZE=1k
+
+# git commit for gpg
+export GPG_TTY=$(tty)
 
 unix_like () {
     alias sudo='sudo '
