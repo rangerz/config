@@ -1,6 +1,8 @@
 export CLICOLOR=1
 export EDITOR=/usr/bin/vim
 
+export LANG=en_US.UTF-8
+
 # Set default blocksize for ls, df, du
 export BLOCKSIZE=1k
 
@@ -19,11 +21,12 @@ macosx_only () {
     alias edit='subl'
     alias dm='diffmerge'
     alias flushDNS='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
-    alias brewery='brew update && brew upgrade && brew cask upgrade && brew cleanup && brew doctor'
+    alias brewery='brew update && brew upgrade && sleep 3 && brew cask upgrade && brew cleanup && brew doctor'
     alias brewdeps='brew deps --tree --installed'
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
     alias diff='colordiff'
+    alias update='mas upgrade && brewery && upgrade_oh_my_zsh'
 }
 
 linux_only () {
