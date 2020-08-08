@@ -26,7 +26,7 @@ macosx_only () {
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
     alias diff='colordiff'
-    alias update='mas upgrade && brewery && upgrade_oh_my_zsh'
+    alias update='mas upgrade && brewery && omz update'
 }
 
 linux_only () {
