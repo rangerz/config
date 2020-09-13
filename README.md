@@ -23,6 +23,7 @@ exec $SHELL
   - diffmerge alias
   - global gitignore
 - vimrc
+  - TODO: survey https://github.com/amix/vimrc
 
 
 
@@ -54,10 +55,11 @@ brew install \
     wget \
     git-extras \
     python \ # Python 3 (latest)
+    php \
+    go \
     colordiff \
     node \
     pv \
-    php \
     expect \
     multitail \
     mas
@@ -86,14 +88,17 @@ brew cask install \
     visual-studio-code \
     typora \
     notion \ # bye evernote ...
-    docker
+    docker \
+    postman \
+    responsively
+
 
 # FileZilla (no brew support ...)
 open https://filezilla-project.org/download.php?type=client
 
 # Update Anything
 mas upgrade
-brew update && brew upgrade && brew cask upgrade && brew cleanup && brew doctor
+brew update && brew upgrade && brew upgrade --cask && brew cleanup && brew doctor
 ```
 
 
@@ -144,7 +149,7 @@ chsh -s /usr/local/bin/zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 # Update
-upgrade_oh_my_zsh
+omz update
 
 # Built-in Plugins
 # Edit ~/.zshrc:
@@ -292,22 +297,8 @@ Shift + Insent => Paste
 https://superuser.com/questions/703162/shift-insert-to-paste-in-mac-os-x
 https://apple.stackexchange.com/questions/32297/how-can-i-reassign-the-copy-paste-keyboard-shortcuts
 
+Support home and end like unix
 https://damieng.com/blog/2015/04/24/make-home-end-keys-behave-like-windows-on-mac-os-x
-mkdir ~/Library/KeyBindings
-vim ~/Library/KeyBindings/DefaultKeyBinding.dict
-
-{
-    "\UF729" = moveToBeginningOfParagraph:; // home 
-    "\UF72B" = moveToEndOfParagraph:; // end 
-    "$\UF729" = moveToBeginningOfParagraphAndModifySelection:; // shift-home 
-    "$\UF72B" = moveToEndOfParagraphAndModifySelection:; // shift-end 
-    "^\UF729" = moveToBeginningOfDocument:; // ctrl-home 
-    "^\UF72B" = moveToEndOfDocument:; // ctrl-end 
-    "^$\UF729" = moveToBeginningOfDocumentAndModifySelection:; // ctrl-shift-home 
-    "^$\UF72B" = moveToEndOfDocumentAndModifySelection:; // ctrl-shift-end
-}
-
-reboot
 ```
 
 
@@ -316,61 +307,9 @@ reboot
 
 https://medium.com/mindful-technology/too-many-open-files-limit-ulimit-on-mac-os-x-add0f1bfddde
 
-```
-sudo vim /Library/LaunchDaemons/limit.maxfiles.plist
-
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-<key>Label</key>
-<string>limit.maxfiles</string>
-<key>ProgramArguments</key>
-<array>
-<string>launchctl</string>
-<string>limit</string>
-<string>maxfiles</string>
-<string>524288</string>
-<string>524288</string>
-</array>
-<key>RunAtLoad</key>
-<true/>
-<key>ServiceIPC</key>
-<false/>
-</dict>
-</plist>
-
-sudo vim /Library/LaunchDaemons/limit.maxproc.plist
-
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple/DTD PLIST 1.0//EN"
-"http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-<key>Label</key>
-<string>limit.maxproc</string>
-<key>ProgramArguments</key>
-<array>
-<string>launchctl</string>
-<string>limit</string>
-<string>maxproc</string>
-<string>2048</string>
-<string>2048</string>
-</array>
-<key>RunAtLoad</key>
-<true />
-<key>ServiceIPC</key>
-<false />
-</dict>
-</plist>
-
-reboot
-```
 
 
-
-### Double Screen [Must Need]
+### Double Screen Switch
 
 https://medium.com/thevelops-tech-blog/how-to-switch-focus-between-screens-in-macos-21c6f02883a6
 

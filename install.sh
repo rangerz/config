@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# MUST Install in ~/config
+# Install in ~/config
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd )"
 
 # Shell Config
@@ -15,17 +15,21 @@ case $SHELL in
 *)
     echo "Unknown SHELL env"
 esac
+
 echo "# Ranger's Config" >> $SHRC
 echo "test -e $DIR/.sh_profile && source $DIR/.sh_profile" >> $SHRC
 echo "Apply Shell Config: exec \$SHELL"
 
 # Vim Config
 echo "source $DIR/.vimrc" >> ~/.vimrc
+mkdir -p ~/.vim/.backup
+mkdir -p ~/.vim/.swp
+mkdir -p ~/.vim/.undo
 
 # Git Config
 git config --add --global include.path "$DIR/.gitconfig"
 
-# Git Config's DiffMerge
+# DiffMerge for Git Config
 # https://sourcegear.com/diffmerge/webhelp/sec__git.html
 if [[ "$OSTYPE" == "darwin"* ]]; then
     git config --add --global include.path "$DIR/.gitconfig_diffmerge_macosx"
