@@ -23,6 +23,7 @@ macosx_only () {
     alias flushDNS='dscacheutil -flushcache; sudo killall -HUP mDNSResponder'
     alias brewery='brew update && brew upgrade && brew upgrade --cask && brew cleanup && brew doctor'
     alias brewdeps='brew deps --tree --installed'
+    brewrm () { brew rm $1 && brew rm $(join <(brew leaves) <(brew deps $1)) }
     trash () { command mv "$@" ~/.Trash ; }
     alias fr='open -a Finder '
     alias diff='colordiff'
