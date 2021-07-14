@@ -11,6 +11,7 @@
     st = status
     ci = commit
     co = checkout
+    c-p = cherry-pick
     br = branch
     df = diff
     dfc = diff --cached
